@@ -1,0 +1,57 @@
+.todo {
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	padding: 1rem;
+
+	transition: background .3s ease;
+
+	p {
+		margin: 0;
+	}
+
+	input {
+		padding: 20px;
+		flex: 1;
+		vertical-align: middle;
+
+	}
+
+	> :first-child {
+		margin-right: 1rem;
+	}
+
+	&:hover {
+		background-color: #f0f0f0;
+		margin: 0;
+	}
+}
+
+.todo li, .todo {
+	margin: 0;
+}
+
+.todo__subtext {
+	color: #999;
+}
+
+.todo-completed {
+	p, .todo-subtext{
+		color: #cccccc;
+		text-decoration: line-through; 
+	}
+}
+
+.todo__title{
+	align-items: center;
+	flex: 1;
+}
+
+.todo__clear-item {
+	align-items: center;
+	flex: 1;
+
+	button {
+		border-radius: 4px;
+	}
+}

@@ -1,0 +1,205 @@
+$orange: orange;
+$darkOrange: DarkOrange;
+$lightOrange: lighten( $orange, 10% );
+
+.container {
+	border: 3px solid $darkOrange;
+}
+
+.z-flex-container {
+	border: 3px solid $darkOrange;
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.z-flex-container2 {
+	border: 3px solid $darkOrange;
+	display: inline-flex;
+	margin-bottom: 20px;
+
+
+	.z-flex-item {
+		width: 100px;
+	}
+}
+
+.z-flex-container3 {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-bottom: 20px;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+.z-flex-container4 {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+
+	}
+}
+
+.z-flex-container5 {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	margin-bottom: 20px;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+.z-flex-container6 {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+	justify-content: flex-start;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+.z-flex-container7 {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	margin-bottom: 20px;
+	justify-content: flex-end;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+.z-flex-container8 {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	margin-bottom: 20px;
+	justify-content: center;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+.z-flex-container9 {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	margin-bottom: 20px;
+	justify-content: space-around;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+
+.z-flex-container10 {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	margin-bottom: 20px;
+	justify-content: space-between;
+
+	.z-flex-item {
+		width: 100px;
+	}
+
+	.z-flex-item:nth-of-type(odd) {
+		background-color: green;
+	}
+}
+
+.z-flex-container11 {
+	display: flex;
+	
+	margin-bottom: 20px;
+	
+
+	.zz-flex-item {
+		height: 100px;
+		background-color: $orange;
+	border: 2px solid $lightOrange;
+
+	color: white;
+	font-weight: bolder;
+		/*width: 100px;*/
+	}
+
+	.zz-flex-item-1 {
+		background-color: green;
+		flex-grow: 2;
+	}
+
+	.zz-flex-item-2 {
+		background-color: blue;
+		flex-grow: 1;
+	}
+
+	.zz-flex-item-3 {
+		background-color: yellow;
+		flex-grow: 3;
+	}
+}
+
+
+
+
+
+
+
+
+.z-flex-item {
+	background-color: $orange;
+	border: 2px solid $lightOrange;
+	height: 100px;
+	width: 100%;
+	color: white;
+	font-weight: bolder;
+}
+
+.z-flex-1 {
+	background-color: LightBlue;
+	/*order: -1;*/
+}
+
+.z-flex-2 {
+	background-color: LightGreen;
+	/*order: -2;	*/
+}
+
+.z-flex-3 {
+	background-color: LightYellow;
+}
