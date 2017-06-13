@@ -5,6 +5,7 @@ import TodoApp from 'TodoApp';
 import Main from 'Main';
 import Login from 'Login';
 import Extra from 'Extra';
+import Sorter from 'Sorter';
 
 import firebase from 'app/firebase/';
 
@@ -33,6 +34,7 @@ export default (
 			<Route path="todos" component={TodoApp} onEnter={requireLogin} />
 			<Route path="extra" component={Extra} />
 			<Route path="login" component={Login} />
+			<Route path="sorter" component={Sorter} />
 		</Route>
 	</Router>
 );

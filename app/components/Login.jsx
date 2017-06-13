@@ -6,13 +6,13 @@ import * as actions from 'actions';
 
 
 // this is the un-connected version -- for tests
-export var Login = React.createClass({
+export class Login extends React.Component {
 
 	onLogin() {
 		var {dispatch} = this.props;
 
 		dispatch(actions.startLogin());
-	},
+	}
 
 	render() {
 		return (
@@ -25,14 +25,14 @@ export var Login = React.createClass({
 							<p>
 								Login with Github account below.
 							</p>
-							<button className="button" onClick={this.onLogin}>Login wth Github</button>
+							<button className="button" onClick={this.onLogin.bind(this)}>Login wth Github</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		);
 	}	
-});
+}
 
 // Allow this component to dispatch actions
 // This is the default connected version

@@ -79,6 +79,19 @@ export var todosReducer = (state = [], action) => {
 };
 
 
+
+//===============================================
+export var orderReducer = (state = [], action) => {
+	switch(action.type) {
+		case 'UPDATE_TODOS_ORDER':
+			return action.order;
+
+		default:
+			return state;
+	};
+};
+
+
 //===============================================
 export var authReducer = (state = {}, action) => {
 	switch(action.type) {

@@ -1,8 +1,8 @@
 var React = require('react');
-var React = require('react');
 
-export var Extra = React.createClass({
-	render: function(){
+export class Extra extends React.Component {
+	
+	render(){
 		return (
 			<div>
 				<h1 className='page-title'>LEARNING FLEX</h1>
@@ -122,7 +122,7 @@ export var Extra = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
-module.exports = Extra;
+export default Extra;
 

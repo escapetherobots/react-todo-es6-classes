@@ -2,7 +2,12 @@ var React = require('react');
 var { connect } = require('react-redux');
 var actions = require('actions');
 
-export var TodoAdd = React.createClass({
+export class TodoAdd extends React.Component {
+
+	constructor (props) {
+		super(props);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 
 	handleSubmit(e){
 		e.preventDefault();
@@ -22,10 +27,10 @@ export var TodoAdd = React.createClass({
 
 		
 
-	},
+	}
 
 
-	render: function(){
+	render(){
 
 		return (
 			<div className="container__footer">
@@ -37,7 +42,7 @@ export var TodoAdd = React.createClass({
 		);
 	}
 
-});
+}
 
 // This component doesn't need any props from the state, just run this
 // by running TodoApp through connect it adds the dispatch method 

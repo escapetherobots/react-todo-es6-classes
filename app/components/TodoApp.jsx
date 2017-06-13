@@ -15,13 +15,13 @@ import TodoSearch from 'TodoSearch';
 // the API is now accessed from the TodoList component!
 //var TodoAPI = require('TodoAPI');
 
-export var TodoApp = React.createClass({
+export class TodoApp extends React.Component {
 
 	onLogout(e) {
 		e.preventDefault;
 		var {dispatch} = this.props;
 		dispatch(actions.startLogout());
-	},
+	}
 
 	// getInitialState() {
 	// 	return {
@@ -69,14 +69,14 @@ export var TodoApp = React.createClass({
 	// 	TodoAPI.setTodos(this.state.todos);
 	// },	
 
-	render: function(){
+	render() {
 		//var {todos, showCompleted, searchText} = this.state;
 		//var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 		// the components now know how to render themselves - via Redux!
 
 		return (
 			<div>
-				<a href='#' onClick={this.onLogout}>Logout</a>
+				<a href='#' onClick={this.onLogout.bind(this)}>Logout</a>
 				<h1 className="page-title">TODO APP</h1>
 				
 				<div className="row">
@@ -93,6 +93,6 @@ export var TodoApp = React.createClass({
 		);
 	}
 
-});
+}
 
 export default Redux.connect()(TodoApp);

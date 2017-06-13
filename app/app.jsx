@@ -30,6 +30,7 @@ firebase.auth().onAuthStateChanged( (user) => {
 		store.dispatch(actions.login(user.uid));
 		// get initial todos from firebase using action generators based on uid - redux
 		store.dispatch(actions.startAddTodos());
+
 		//then push router to:
 		hashHistory.push('/todos');
 		

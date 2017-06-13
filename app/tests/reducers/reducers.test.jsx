@@ -109,7 +109,7 @@ describe('Reducers', () => {
 				}
 			];
 			var action = {
-				type: 'LOGOUT_REMOVE_TODOS'
+				type: 'LOGOUT'
 			};
 
 			var res = reducers.todosReducer(df(todos), df(action));

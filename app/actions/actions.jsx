@@ -24,6 +24,11 @@ export var addTodo = (todo) => {
 //Start AddTodo - Firebase
 export var startAddTodo = (text) => {
 	return (dispatch, getState) => {
+		var todosCount = getState().todos.map( (item) => {
+			return item.order;
+		});
+
+		console.log(todosCount);
 
 		var uid = getState().auth.uid;
 		// define the todo object defaults
@@ -31,7 +36,8 @@ export var startAddTodo = (text) => {
 			text,
 			completed: false,
 			createdAt: moment().unix(),
-			completedAt: null
+			completedAt: null,
+			order: todosCount.length + 1
 		};
 		// set reference for firebase item
 		var todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
@@ -44,6 +50,7 @@ export var startAddTodo = (text) => {
 			};
 			//now run the actual dispatched reducer passing in the todo object
 			dispatch(addTodo(todoResult));
+			dispatch(startUpdateOrder());
 		});
 	};
 };
@@ -109,6 +116,9 @@ export var updateTodo = (id, updates) => {
 };
 
 
+
+
+
 //Start toggleTODO - firebase
 // THUNK lets us return functions
 
@@ -124,6 +134,7 @@ export var startToggleTodo = (id, completed) => {
 
 		return todoRef.update(updates).then( () => {
 			dispatch(updateTodo(id, updates));
+			dispatch(startUpdateOrder());
 		});
 		
 	};
@@ -133,7 +144,6 @@ export var startToggleTodo = (id, completed) => {
 //===============================================
 //===============================================
 export var clearTodo = (id) => {
-	console.log('running clear todo with: ', id);
 	return {
 		type: 'CLEAR_TODO',
 		id
@@ -143,13 +153,13 @@ export var clearTodo = (id) => {
 
 // THUNK lets actions return functions
 export var startClearTodo = (id) => {
-	console.log('starting clear');
 	return (dispatch, getState) => {
 		var uid = getState().auth.uid;
 		var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
 
 		return todoRef.remove().then( () => {
 			dispatch(clearTodo(id));
+			dispatch(startUpdateOrder());
 		});
 	};
 };
@@ -168,9 +178,7 @@ export var login = (uid) => {
 export var startLogin = () => {
 	return (dispatch, getState) => {
 		return firebase.auth().signInWithPopup(githubProvider).then( (result) => {
-			console.log('Auth worked! ', result);
 		}, (error) => {
-			console.log('Unable to auth ', error);
 		});
 	};
 };
@@ -185,7 +193,6 @@ export var logout = () => {
 export var startLogout = () => {
 	return (dispatch, getState) => {
 		return firebase.auth().signOut().then( () => {
-			console.log('Successfully logged out');
 		});
 	};
 };
@@ -198,5 +205,70 @@ export var ztest = () => {
 	}
 }
 
+
+//===============================================
+//===============================================
+//Update the order/arrangment of the todos
+
+export var updateOrder = (order) => {
+	return {
+		type: 'UPDATE_TODOS_ORDER',
+		order
+	};
+};
+
+export var checkOrder = () => {
+	return (dispatch, getState) => {
+		var uid = getState().auth.uid;
+		var todosRef = firebaseRef.child(`users/${uid}/order`);
+
+		return todosRef.once('value').then( (snapshot) => {
+			 var arrResult = snapshot.val()
+			
+			dispatch(updateOrder(arrResult));
+		});
+
+
+	}
+}
+
+
+export var startUpdateOrderSubmit = (arr) => {
+	return (dispatch, getState) => {
+		var uid = getState().auth.uid;
+		var todosRef = firebaseRef.child(`users/${uid}/order`);
+
+		return todosRef.set(arr).then( () => {
+			dispatch(updateOrder(arr));
+		});
+	}
+}
+
+export var startUpdateOrder = () => {
+	return (dispatch, getState) => {
+		var uid = getState().auth.uid;
+		var todosRef = firebaseRef.child(`users/${uid}/order`);
+		var orderFromState = [];
+
+		if (getState().order != null && getState().order.length > 0) {
+			orderFromState = [
+				...getState().order.map( (item) => item)
+			];
+		} else {
+			orderFromState = [
+				...getState().todos.filter( (item) => {
+					return !item.completed;
+				}).map( (obj) => {
+					return obj.text;
+				})
+			];
+		}
+
+		return todosRef.set(orderFromState).then( () => {
+			dispatch(updateOrder(orderFromState));
+		});
+		
+	}
+}
 
 

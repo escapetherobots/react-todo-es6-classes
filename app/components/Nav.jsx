@@ -2,10 +2,10 @@ var React = require('react');
 
 var {Link, IndexLink} = require('react-router');
 
-var Nav = React.createClass({
+export class Nav extends React.Component {
 
 
-	render: function(){
+	render(){
 		return (
 			<div  >
 				<nav className="top-bar nav-background" data-responsive-toggle="example-menu" data-hide-for="medium">
@@ -15,6 +15,7 @@ var Nav = React.createClass({
 							<li><IndexLink to="/" activeClassName="active">Login</IndexLink></li>
 							<li><Link to="/extra" activeClassName="active">Extra</Link></li>
 							<li><Link to="/todos" activeClassName="active">Todo App</Link></li>
+							<li><Link to="/sorter" activeClassName="active">Sorter Example</Link></li>
 						</ul>
 					</div>
 					<div className="top-bar-right">
@@ -25,6 +26,6 @@ var Nav = React.createClass({
 		);
 	}
 
-});
+}
 
 module.exports = Nav;
